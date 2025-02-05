@@ -1,30 +1,19 @@
 import React, { useState } from "react";
 import { cn } from "../../utils/cd";
 import { Link } from "react-router-dom";
-import CarsImage from '../../additionalFile/category-image/Cars.jpeg';
-import AnimeImage from '../../additionalFile/category-image/Anime.jpeg';
-import ComicImage from '../../additionalFile/category-image/Comic.jpeg';
-import GameImage from '../../additionalFile/category-image/Game.jpeg';
-import MovieImage from '../../additionalFile/category-image/Movie.jpeg';
-import MusicImage from '../../additionalFile/category-image/Music.jpeg';
-import QuotesImage from '../../additionalFile/category-image/Quotes.jpeg';
-import SceneryImage from '../../additionalFile/category-image/Scenery.jpeg';
-import SeriesImage from '../../additionalFile/category-image/Series.jpeg';
-import SportsImage from '../../additionalFile/category-image/Sports.jpeg';
-import ArtImage from '../../additionalFile/category-image/Art.jpeg';
 
 const imageMap = {
-    "Cars Poster": CarsImage,
-    "Anime Poster": AnimeImage,
-    "Comics Poster": ComicImage,
-    "Game Poster": GameImage,
-    "Movie Poster": MovieImage,
-    "Music Poster": MusicImage,
-    "Quotes Poster": QuotesImage,
-    "Scenery Poster": SceneryImage,
-    "Series Poster": SeriesImage,
-    "Sports Poster": SportsImage,
-    "Art": ArtImage,
+  "Cars Poster": "/additionalFile/category-image/Cars.jpeg",
+  "Anime Poster": "/additionalFile/category-image/Anime.jpeg",
+  "Comics Poster": "/additionalFile/category-image/Comic.jpeg",
+  "Game Poster": "/additionalFile/category-image/Game.jpeg",
+  "Movie Poster": "/additionalFile/category-image/Movie.jpeg",
+  "Music Poster": "/additionalFile/category-image/Music.jpeg",
+  "Quotes Poster": "/additionalFile/category-image/Quotes.jpeg",
+  "Scenery Poster": "/additionalFile/category-image/Scenery.jpeg",
+  "Series Poster": "/additionalFile/category-image/Series.jpeg",
+  "Sports Poster": "/additionalFile/category-image/Sports.jpeg",
+  "Art": "/additionalFile/category-image/Art.jpeg",
 };
 
 export const Card = React.memo(({

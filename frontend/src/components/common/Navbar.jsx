@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
-import logo from "../../additionalFile/logo.png";
-import loupe from "../../additionalFile/loupe.png";
-import bag from "../../additionalFile/shopping-bag.png";
-import userIcon from "../../additionalFile/user.png";
 import { getAllPoster } from "../../services/operations/posterDetailsAPI";
-import { useDispatch } from "react-redux";
 
 
 const Navbar = () => {
@@ -92,7 +87,7 @@ const Navbar = () => {
         {/* Logo */}
         <NavLink to="/">
           <img
-            src={logo}
+            src='/additionalFile/logo.png'
             className="h-16 lg:h-20 mr-2 mix-blend-darken"
             alt="shopping app"
           />
@@ -152,7 +147,7 @@ const Navbar = () => {
 
             {!isFocused && !searchInput && (
               <img
-                src={loupe}
+                src='/additionalFile/loupe.png'
                 alt="Search Icon"
                 className="h-6 absolute top-[0.3rem] right-3 opacity-100 transition-opacity duration-300"
               />
@@ -195,7 +190,7 @@ const Navbar = () => {
           {/* Cart Icon */}
           <Link to="/cart">
             <div className="relative hover:scale-110 active:scale-90 transition-transform duration-300 transform">
-              <img src={bag} alt="Shopping Bag" className="h-7" />
+              <img src='/additionalFile/shopping-bag.png' alt="Shopping Bag" className="h-7" />
               {cart.length > 0 && (
                 <span
                   className="absolute -top-1 -right-2 bg-black text-xs w-5 h-5 flex 
@@ -210,7 +205,7 @@ const Navbar = () => {
           {/* User Profile Icon */}
           <Link to={token ? "/dashboard" : "/login"}>
             <img
-              src={user?.image || userIcon}
+              src={user?.image || '/additionalFile/user.png'}
               alt="User Icon"
               className="h-10 rounded-full aspect-square object-cover hover:scale-[1.1] active:scale-90 transition-all duration-300"
             />

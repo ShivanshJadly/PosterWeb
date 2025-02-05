@@ -6,23 +6,25 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import SplitText from '../../ui/split-text';
 
-import image1 from '../../../additionalFile/home-image/homeImage_1.jpg';
-import image2 from '../../../additionalFile/home-image/homeImage_2.jpg';
-import image3 from '../../../additionalFile/home-image/homeImage_3.jpg';
-import image4 from '../../../additionalFile/home-image/homeImage_4.jpg';
-
-const handleAnimationComplete = () => {
-  console.log('All letters have animated!');
-};
+// import image1 from '../../../additionalFile/home-image/homeImage_1.jpg';
+// import image2 from '../../../additionalFile/home-image/homeImage_2.jpg';
+// import image3 from '../../../additionalFile/home-image/homeImage_3.jpg';
 
 const Section_1 = () => {
-  // Array of objects containing images and headings
   const slides = [
-    { image: image1, heading: "Posters That Make a Statement." },
-    { image: image2, heading: "Express Yourself, Shop Unique Posters Now!" },
-    { image: image3, heading: "Art That Speaks, Posters That Inspire!" },
+    {
+      image: "/additionalFile/home-image/homeImage_1.jpg",
+      heading: "Posters That Make a Statement.",
+    },
+    {
+      image: "/additionalFile/home-image/homeImage_2.jpg",
+      heading: "Express Yourself, Shop Unique Posters Now!",
+    },
+    {
+      image: "/additionalFile/home-image/homeImage_3.jpg",
+      heading: "Art That Speaks, Posters That Inspire!",
+    },
   ];
 
   return (

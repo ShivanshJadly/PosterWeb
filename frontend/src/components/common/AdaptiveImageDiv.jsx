@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import sizeImage from "../../additionalFile/sizeImage.png"
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFlip, Navigation, Pagination } from "swiper/modules";
@@ -13,7 +12,7 @@ import "swiper/css/pagination";
 export function AdaptiveImageDiv({ images }) {
   const [backgroundColor, setBackgroundColor] = useState("rgb(255, 255, 255)");
   const canvasRef = useRef(null);
-  const imageArr = [images, sizeImage];
+  const imageArr = [images, '/additionalFile/sizeImage.png'];
 
   useEffect(() => {
     const img = new window.Image();
@@ -79,7 +78,7 @@ export function AdaptiveImageDiv({ images }) {
                   <img
                     src={image}
                     alt={`poster-image-${index}`}
-                    className={`w-full lg:h-full ${image === sizeImage ? "border-none object-cover" : "border-black border-2 lg:border-4 object-contain"}`}
+                    className={`w-full lg:h-full ${image === '/additionalFile/sizeImage.png' ? "border-none object-cover" : "border-black border-2 lg:border-4 object-contain"}`}
                   />
                 </SwiperSlide>
               ))}

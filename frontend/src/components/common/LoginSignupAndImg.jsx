@@ -1,5 +1,4 @@
 import React from "react";
-import leftImage from "../../additionalFile/collage2.jpg";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -15,7 +14,7 @@ const LoginSignupAndImg = () => {
         <div className="relative w-full h-screen">
           {/* Background Image */}
           <img
-            src={leftImage}
+            src='/additionalFile/collage2.jpg'
             alt="Collage"
             className="w-full h-full object-cover filter blur-sm sm:blur-sm md:blur-sm lg:filter-none"
           />
