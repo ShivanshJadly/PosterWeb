@@ -14,6 +14,7 @@ const LoginSignupAndImg = () => {
         <div className="relative w-full h-screen">
           {/* Background Image */}
           <img
+            loading="lazy"
             src='/additionalFile/collage2.jpg'
             alt="Collage"
             className="w-full h-full object-cover filter blur-sm sm:blur-sm md:blur-sm lg:filter-none"

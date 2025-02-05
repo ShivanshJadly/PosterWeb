@@ -87,6 +87,7 @@ const Navbar = () => {
         {/* Logo */}
         <NavLink to="/">
           <img
+            loading="lazy"
             src='/additionalFile/logo.png'
             className="h-16 lg:h-20 mr-2 mix-blend-darken"
             alt="shopping app"
@@ -147,6 +148,7 @@ const Navbar = () => {
 
             {!isFocused && !searchInput && (
               <img
+                loading="lazy"
                 src='/additionalFile/loupe.png'
                 alt="Search Icon"
                 className="h-6 absolute top-[0.3rem] right-3 opacity-100 transition-opacity duration-300"
@@ -173,6 +175,7 @@ const Navbar = () => {
                   >
                     {/* Poster Image */}
                     <img
+                      loading="lazy"
                       src={product.image || "default-placeholder-image.png"} // Ensure a fallback image is provided
                       alt={product.posterName}
                       className="h-10 w-10 sm:h-12 sm:w-12 rounded-md object-cover"
@@ -190,7 +193,7 @@ const Navbar = () => {
           {/* Cart Icon */}
           <Link to="/cart">
             <div className="relative hover:scale-110 active:scale-90 transition-transform duration-300 transform">
-              <img src='/additionalFile/shopping-bag.png' alt="Shopping Bag" className="h-7" />
+              <img loading="lazy" src='/additionalFile/shopping-bag.png' alt="Shopping Bag" className="h-7" />
               {cart.length > 0 && (
                 <span
                   className="absolute -top-1 -right-2 bg-black text-xs w-5 h-5 flex 
@@ -205,6 +208,7 @@ const Navbar = () => {
           {/* User Profile Icon */}
           <Link to={token ? "/dashboard" : "/login"}>
             <img
+              loading="lazy"
               src={user?.image || '/additionalFile/user.png'}
               alt="User Icon"
               className="h-10 rounded-full aspect-square object-cover hover:scale-[1.1] active:scale-90 transition-all duration-300"

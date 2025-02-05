@@ -143,6 +143,7 @@ const OrderHistory = () => {
                       </div>
                       {order.poster?.image ? (
                         <img
+                          loading="lazy"
                           src={order.poster?.image}
                           alt={order.poster?.posterName}
                           width={120}

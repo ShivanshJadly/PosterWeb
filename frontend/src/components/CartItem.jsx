@@ -20,6 +20,7 @@ const CartItem = ({ item }) => {
       <div className="h-full w-[60%] lg:w-[18%] flex border-2 border-black relative">
         <img
           onClick={handleClick}
+          loading="lazy"
           src={item.image}
           alt="item img"
           className="object-fill w-full h-full cursor-pointer"

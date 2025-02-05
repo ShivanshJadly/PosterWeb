@@ -140,11 +140,13 @@ const Cart = () => {
           className="flex flex-col justify-center lg:pb-60 lg:pt-48 items-center transition-all duration-300 h-screen sm:h-screen md:h-screen lg:h-screen"
         >
           <img
+            loading="lazy"
             src='/additionalFile/empty-box.png'
             alt="empty-box"
             className="w-30 sm:w-40 lg:w-50 mix-blend-darken"
           />
           <img
+            loading="lazy"
             src='/additionalFile/spider.png'
             alt="spider"
             className="w-[100px] md:w-[130px] lg:w-[150px] right-5 absolute opacity-40 transition-all duration-700 ease-in-out"

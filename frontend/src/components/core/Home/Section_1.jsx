@@ -50,6 +50,7 @@ const Section_1 = () => {
               </div>
               {/* Image */}
               <img
+                loading="lazy"
                 src={slide.image}
                 alt={`Carousel slide ${index + 1}`}
                 className="w-full md:h-[30rem] lg:h-[50rem] object-cover md:object-fill"

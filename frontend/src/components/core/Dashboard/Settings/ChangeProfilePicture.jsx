@@ -90,6 +90,7 @@ export default function ChangeProfilePicture() {
             </div>
           </div>
           <img
+            loading="lazy"
             src={previewSource || user?.image}
             alt={`profile-${user?.firstName}`}
             className="aspect-square md:text-sm lg:text-base w-[40px] md:w-[60px] lg:w-[78px] rounded-full object-cover"

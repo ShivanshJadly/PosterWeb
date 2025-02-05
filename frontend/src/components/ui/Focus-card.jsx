@@ -32,6 +32,7 @@ export const Card = React.memo(({
       hovered !== null && hovered !== index && "lg:blur-sm lg:scale-[0.98]"
     )}>
     <img
+      loading="lazy"
       src={imageMap[card.title]}
       alt={card.title}
       fill
