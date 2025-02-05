@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import { getAllPoster } from "../../services/operations/posterDetailsAPI";
+import { BiCategoryAlt } from "react-icons/bi";
 
 
 const Navbar = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
 
 
   const token = useSelector((state) => state.auth?.token);
@@ -18,6 +18,8 @@ const Navbar = () => {
   const [isClearing, setIsClearing] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [posts, setPosts] = useState([]);
+  const [showMidScreenSearch, setShowMidScreenSearch] = useState(false);
+
 
   async function fetchProductData() {
     try {
@@ -83,22 +85,13 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
     >
-      <div className="flex relative lg:justify-between justify-center text-black p-3 items-center h-[5rem]">
-        {/* Logo */}
-        <NavLink to="/">
-          <img
-            loading="lazy"
-            src='/additionalFile/logo.png'
-            className="h-16 lg:h-20 mr-2 mix-blend-darken"
-            alt="shopping app"
-          />
-        </NavLink>
+      <div className="flex relative lg:justify-between text-black p-2 items-center h-[5rem]">
 
         {/* Hamburger Menu for Mobile */}
-        <div className="sm:block md:block lg:hidden absolute top-8 right-4">
+        <div className="absolute lg:hidden left-4">
           <button
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="flex flex-col gap-[0.26rem] focus:outline-none"
+            className="flex flex-col gap-[0.28rem] focus:outline-none"
           >
             <span
               className={`w-6 border border-black rounded transition-transform ${menuOpen ? "rotate-45 translate-y-[3px]" : ""
@@ -114,6 +107,84 @@ const Navbar = () => {
             ></span>
           </button>
         </div>
+
+        {/* Logo */}
+        <NavLink to="/" className="absolute left-1/2 transform -translate-x-1/2 lg:relative lg:left-1 lg:transform-none">
+          <img src='/additionalFile/logo.png' className="h-16 lg:h-20" alt="shopping app" />
+        </NavLink>
+
+
+        <div className="absolute right-4 flex gap-3 items-center lg:hidden">
+          {!showMidScreenSearch ? (
+            <img
+              loading="lazy"
+              src='/additionalFile/loupe.png'
+              alt="Search Icon"
+              className="h-6 hover:scale-110 cursor-pointer"
+              onClick={() => setShowMidScreenSearch(true)}
+            />
+          ) : (
+            <div className="flex items-center">
+              <input
+                type="text"
+                id="search"
+                autoComplete="off"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                className="border border-black rounded-xl p-1 focus:outline-none pl-2 pr-8 h-[3.5rem]"
+                placeholder="Search"
+                autoFocus
+              />
+              <button
+                onClick={() => {
+                  setShowMidScreenSearch(false);
+                  setSearchInput("");
+                }}
+                className="ml-2 text-black hover:text-gray-700"
+              >
+                ✕
+              </button>
+            </div>
+
+          )}
+          {/* Cart Icon */}
+          <Link to="/cart">
+            <div className="relative hover:scale-110 active:scale-90 transition-transform duration-300 transform">
+              <img loading="lazy" src='/additionalFile/shopping-bag.png' alt="Shopping Bag" className="h-6" />
+              {cart.length > 0 && (
+                <span
+                  className="absolute -top-1 -right-2 bg-black text-xs w-5 h-5 flex 
+        justify-center items-center animate-bounce rounded-full text-white"
+                >
+                  {cart.length}
+                </span>
+              )}
+            </div>
+          </Link>
+        </div>
+        {showMidScreenSearch && searchInput && filterProducts.length > 0 && (
+          <div className="absolute top-20 left-0 right-0 mt-1 mx-4 bg-white shadow-lg border rounded-lg z-10 max-h-60 overflow-y-auto">
+            {filterProducts.map((product) => (
+              <Link
+                to={`/poster/${product._id}`}
+                key={product._id}
+                className="flex items-center px-4 py-2 hover:bg-gray-200 transition-colors gap-4"
+                onClick={() => setShowMidScreenSearch(false)}
+              >
+                <img
+                  loading="lazy"
+                  src={product.image || "default-placeholder-image.png"}
+                  alt={product.posterName}
+                  className="h-10 w-10 sm:h-12 sm:w-12 rounded-md object-cover"
+                />
+                <span className="text-sm sm:text-base truncate">
+                  {product.posterName}
+                </span>
+              </Link>
+            ))}
+          </div>
+        )}
+
 
         <div className="lg:flex lg:items-center lg:visible font-medium gap-4 invisible">
           {/* Categories */}
@@ -166,7 +237,7 @@ const Navbar = () => {
             )}
 
             {searchInput && filterProducts.length > 0 && (
-              <div className="absolute left-0 mt-1 w-full max-w-md bg-white shadow-lg border rounded-lg z-10">
+              <div className="absolute left-0 mt-1 w-full max-w-md bg-white shadow-lg border rounded-lg z-10 max-h-screen overflow-y-auto">
                 {filterProducts.map((product) => (
                   <Link
                     to={`/poster/${product._id}`}
@@ -218,42 +289,49 @@ const Navbar = () => {
       </div>
       {/* Mobile Dropdown Menu */}
       {menuOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md">
+        <div className="absolute w-[50%] left-1 right-0 mt-1 bg-white shadow-lg rounded-lg overflow-hidden transition-all duration-300 ease-in-out">
           <Link
             to="/categories"
-            className="block px-4 py-2 text-black hover:bg-gray-100"
+            className="flex gap-2 items-center px-4 py-3 text-gray-800 hover:bg-gray-100 transition-colors"
             onClick={() => setMenuOpen(false)}
           >
-            Categories
+            <BiCategoryAlt className="text-2xl"/>
+            <span className="font-medium">Categories</span>
           </Link>
-          <Link
-            to="/cart"
-            className="block px-4 py-2 text-black hover:bg-gray-100"
-            onClick={() => setMenuOpen(false)}
-          >
-            Cart
-          </Link>
+         
           {/* Profile or Login */}
           {token ? (
-            <div className="relative">
-              <button
-                onClick={() => setProfileMenuOpen(!profileMenuOpen)}
-                className="w-full text-left px-4 py-2 text-black flex gap-1 items-center hover:bg-gray-100"
-              >
-                <Link to="/dashboard" onClick={() => setMenuOpen(false)}>Profile</Link>
-              </button>
-            </div>
+            <Link
+              to="/dashboard"
+              className="flex items-center px-4 py-2 text-black hover:bg-gray-100"
+              onClick={() => setMenuOpen(false)}
+            >
+              <img
+                loading="lazy"
+                src={user?.image || '/additionalFile/user.png'}
+                alt="User Icon"
+                className="h-7 w-7 rounded-full mr-2 object-cover"
+              />
+              <span className="font-medium">Profile</span>
+            </Link>
           ) : (
             <Link
               to="/login"
-              className="block px-4 py-2 text-black hover:bg-gray-100"
+              className="flex items-center px-4 py-2 text-black hover:bg-gray-100"
               onClick={() => setMenuOpen(false)}
             >
-              Login
+              <img
+                loading="lazy"
+                src='/additionalFile/user.png'
+                alt="User Icon"
+                className="h-7 w-7 rounded-full mr-2 object-cover"
+              />
+              <span className="font-medium">Login</span>
             </Link>
           )}
         </div>
       )}
+
     </div>
 
   );
