@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { getOrderHistory } from "../../../services/operations/posterDetailsAPI";
 import { useSelector } from "react-redux";
 import Spinner from "../../Spinner";
@@ -15,28 +15,24 @@ const OrderHistory = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
 
   // Fetch orders from API
-  const fetchOrders = async () => {
-    try {
-      setLoading(true);
-      const response = await getOrderHistory(token);
-      if (response?.orderHistory) {
-        setOrders(response.orderHistory);
-      } else {
-        setOrders([]);
-      }
-      setError(null);
-    } catch (err) {
-      setError("Failed to fetch order history. Please try again later.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const fetchOrders = useCallback(async () => {
+  try {
+    setLoading(true);
+    const response = await getOrderHistory(token);
+    setOrders(response?.orderHistory || []);
+    setError(null);
+  } catch (err) {
+    setError("Failed to fetch order history. Please try again later.");
+  } finally {
+    setLoading(false);
+  }
+}, [token]);
 
-  useEffect(() => {
-    if (token) {
-      fetchOrders();
-    }
-  }, [token]);
+useEffect(() => {
+  if (token) {
+    fetchOrders();
+  }
+}, [token, fetchOrders]);
 
   // Group orders by orderId
   const groupOrdersByOrderId = (orders) => {
