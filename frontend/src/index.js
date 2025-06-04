@@ -10,16 +10,16 @@ import rootReducer from "./reducer/index";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const store = configureStore({
-  reducer:rootReducer,
+  reducer: rootReducer,
 });
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 root.render(
-  <Provider store = {store}>
+  <Provider store={store}>
     <BrowserRouter>
-        <GoogleOAuthProvider clientId={clientId}>
-          <App />
-        </GoogleOAuthProvider>
-        <Toaster/>
-      </BrowserRouter>
+      <GoogleOAuthProvider clientId={clientId}>
+        <App />
+      </GoogleOAuthProvider>
+      <Toaster />
+    </BrowserRouter>
   </Provider>
 );
