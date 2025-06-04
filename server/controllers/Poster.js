@@ -111,42 +111,29 @@ exports.createPoster = async (req, res) => {
     })
   }
 }
-// Get all Posters (Paginated)
+// Get all Posters
 exports.getAllPoster = async (req, res) => {
-  try {
-    // 1️⃣ Get page and limit from query (default page = 1, limit = 6)
-    const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 6;
-    const skip = (page - 1) * limit;
-
-    // 2️⃣ Fetch paginated posters
-    const allPosters = await Poster.find({})
+    try {
+      const allPosters = await Poster.find({})
       .select("posterName price image rating description")
       .populate("admin")
-      .skip(skip)
-      .limit(limit)
       .exec();
 
-    // 3️⃣ Get total count for pagination info
-    const total = await Poster.countDocuments();
-
-    // 4️⃣ Send paginated response
-    return res.status(200).json({
-      success: true,
-      data: allPosters,
-      totalPages: Math.ceil(total / limit),
-      currentPage: page,
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(404).json({
-      success: false,
-      message: `Can't Fetch Poster Data`,
-      error: error.message,
-    });
-  }
-};
-
+      // console.log("allposter: ",allPosters)
+  
+      return res.status(200).json({
+        success: true,
+        data: allPosters,
+      })
+    } catch (error) {
+      console.log(error)
+      return res.status(404).json({
+        success: false,
+        message: `Can't Fetch Poster Data`,
+        error: error.message,
+      })
+    }
+}
 // Get all Posters purchased by a user along with quantities
 exports.getAllPosterOfUser = async (req, res) => {
   try {
@@ -412,22 +399,5 @@ exports.updateDeliveryStatus = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error." });
   }
 };
-
-// searchPosters.js
-exports.searchPosters = async (req, res) => {
-  try {
-    const query = req.query.q || "";
-    const results = await Poster.find({
-      posterName: { $regex: query, $options: "i" },
-    })
-    .select("posterName image _id") // Only send required fields
-    .limit(10); // Optional: limit result count
-
-    return res.status(200).json({ success: true, data: results });
-  } catch (error) {
-    return res.status(500).json({ success: false, message: error.message });
-  }
-};
-
 
 
