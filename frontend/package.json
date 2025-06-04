@@ -28,6 +28,7 @@
     "gapi-script": "^1.2.0",
     "google-auth-library": "^9.15.0",
     "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
     "mongoose": "^8.9.2",
     "motion": "^12.0.1",
     "next": "^15.1.5",
