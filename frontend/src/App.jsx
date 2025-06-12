@@ -24,8 +24,6 @@ import PrivateRoute from "./components/core/auth/PrivateRoute";
 import CheckOut from "./Pages/CheckOut";
 
 // Dashboard
-import Settings from "./components/core/Dashboard/Settings";
-import OrderHistory from "./components/core/Dashboard/OrderHistory";
 import PosterDetails from "./Pages/PosterDetails";
 import CategoryWisePosterPage from "./components/core/Categories/CategoryWisePosterPage";
 import ScrollToTop from "./components/common/ScrollToTop";
