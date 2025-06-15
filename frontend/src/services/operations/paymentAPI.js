@@ -5,10 +5,10 @@ import { apiConnector } from "../apiConnector";
 import { paymentEndpoints } from "../apis";
 
 const {
-  POSTER_PAYMENT_API,
-  POSTER_VERIFY_API,
-  SEND_PAYMENT_SUCCESS_EMAIL_API,
+  CREATE_PAYMENT_SESSION_API,
+  VERIFY_PAYMENT_API,
 } = paymentEndpoints;
+
 
 // Load the Razorpay SDK
 async function loadScript(src) {

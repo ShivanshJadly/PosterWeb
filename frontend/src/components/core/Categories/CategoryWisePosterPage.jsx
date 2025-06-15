@@ -1,13 +1,13 @@
-import { useParams } from "react-router-dom"; // Import Link
+import { useParams } from "react-router-dom"; 
 import React, { useEffect, useState } from "react";
 import { getCategoryWisePoster } from "../../../services/operations/posterDetailsAPI";
 import Product from "../../Product";
 import HomeSkeleton from "../../common/skeleton/HomeSkeleton";
 const CategoryWisePosterPage = () => {
-  const { id: categoryId } = useParams(); // Get the category ID from the URL
-  const [categoryData, setCategoryData] = useState(null); // State to hold category and poster data
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const { id: categoryId } = useParams(); 
+  const [categoryData, setCategoryData] = useState(null); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
 
   // Fetch data for the selected category
   const fetchCategoryWisePoster = async (categoryId) => {
